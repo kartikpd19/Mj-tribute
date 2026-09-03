@@ -1,0 +1,29 @@
+.mj-dance {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Multiply so the black silhouette reads as a shadow against the bright
+   part of the gradient (same effect the old static silhouette had), and a
+   soft radial mask so the video's rectangular edge fades into the page
+   instead of showing a hard frame — the "pass through" look. */
+.mj-dance__video {
+  width: min(186vw, 1680px);
+  height: auto;
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+  mask-image: radial-gradient(ellipse 55% 60% at center, black 35%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 55% 60% at center, black 35%, transparent 78%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mj-dance {
+    display: none;
+  }
+}

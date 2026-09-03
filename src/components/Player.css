@@ -1,0 +1,162 @@
+.player {
+  --controls-bottom: 48px;
+  --play-size: clamp(50px, 7.5vw, 72px);
+
+  flex: 1;
+  position: relative;
+}
+
+/* One fixed, bottom-anchored stack — cassette, title/album, controls — laid
+   out in normal flow so exact pixel gaps (via margin) hold regardless of
+   how tall the text or cassette actually render. */
+.player__stack {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--controls-bottom) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.player__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  max-width: 90vw;
+  margin-bottom: 32px;
+}
+
+.player__title {
+  margin: 0;
+  color: #fff;
+  font-family: "Poppins", "Ubuntu Mono", sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.player__album {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.47);
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.24;
+}
+
+.player__cassette-wrap {
+  --cassette-w: min(80vw, 472px);
+  width: var(--cassette-w);
+  margin-bottom: -4px;
+  padding: 48px;
+  box-sizing: border-box;
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.player__cassette-wrap:hover {
+  width: calc(var(--cassette-w) + 4px);
+}
+
+/* Laptop breakpoint (~1024-1439px): cassette 16px smaller than desktop,
+   and the cassette-to-title and album-to-play-button gaps tightened 8px,
+   then another 16px, on top of the base values. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .player__cassette-wrap {
+    --cassette-w: min(80vw, 432px);
+    margin-bottom: -12px;
+  }
+
+  .player__meta {
+    margin-bottom: 24px;
+  }
+}
+
+/* A looping muted video of the same cassette (reels genuinely rotating),
+   with its own black letterboxing cropped out via exact pixel bounding-box
+   math, the same way the old static photo crop worked. */
+.player__cassette {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 558 / 354;
+  border-radius: 24px;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45));
+}
+
+.player__cassette-video {
+  position: absolute;
+  width: 129.032%;
+  height: 361.582%;
+  left: -14.337%;
+  top: -120.904%;
+  object-fit: cover;
+}
+
+.player__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 28.5px);
+}
+
+.player__control {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.player__control:hover {
+  transform: scale(1.06);
+}
+
+.player__control:active {
+  transform: scale(0.96);
+}
+
+.player__control:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.player__control img {
+  display: block;
+  width: clamp(22px, 3.6vw, 32px);
+  height: clamp(22px, 3.6vw, 32px);
+}
+
+/* The skip-back asset is the same skip-forward artwork; flip it so it
+   actually points the opposite direction. */
+.player__control--back img {
+  transform: scaleX(-1);
+}
+
+.player__control--play img {
+  width: var(--play-size);
+  height: var(--play-size);
+}
+
+.player__progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.player__progress-fill {
+  height: 100%;
+  background: #fff;
+  transition: width 0.3s linear;
+}

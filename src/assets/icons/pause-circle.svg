@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="pause-circle-fill" clip-path="url(#clip0_pause)">
+<path id="circle-with-bars" fill-rule="evenodd" clip-rule="evenodd" d="M88 44C88 55.6695 83.3643 66.8611 75.1127 75.1127C66.8611 83.3643 55.6695 88 44 88C32.3305 88 21.1389 83.3643 12.8873 75.1127C4.6357 66.8611 0 55.6695 0 44C0 32.3305 4.6357 21.1389 12.8873 12.8873C21.1389 4.6357 32.3305 0 44 0C55.6695 0 66.8611 4.6357 75.1127 12.8873C83.3643 21.1389 88 32.3305 88 44ZM30 28C28.3431 28 27 29.3431 27 31V57C27 58.6569 28.3431 60 30 60H37C38.6569 60 40 58.6569 40 57V31C40 29.3431 38.6569 28 37 28H30ZM51 28C49.3431 28 48 29.3431 48 31V57C48 58.6569 49.3431 60 51 60H58C59.6569 60 61 58.6569 61 57V31C61 29.3431 59.6569 28 58 28H51Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_pause">
+<rect width="88" height="88" fill="white"/>
+</clipPath>
+</defs>
+</svg>
